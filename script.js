@@ -154,12 +154,14 @@ function confirmarPersonalizado(respuesta) {
 
     const nombre   = nombreInvitado || "Invitado";
     const personas = personasInvitado || "1";
-    const destino  = paraQuien === "novio" ? "Daniel" : "Erika";
+    const para     = paraQuien || "novia";
+
+    console.log("paraQuien:", para);
 
     const scriptURL =
     "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
 
-    fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${paraQuien}`)
+    fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${encodeURIComponent(para)}`)
         .catch(err => console.log("Error al registrar:", err));
 
     const confirmSection =
