@@ -124,13 +124,13 @@ if (nombreInvitado) {
     if (confirmSection) {
 
         const yaConfirmo =
-            localStorage.getItem("confirmo_" + nombreInvitado);
+            localStorage.getItem(
+                "confirmo_" + encodeURIComponent(nombreInvitado)
+            );
 
         if (yaConfirmo) {
 
-            const respuestaGuardada = yaConfirmo;
-
-            if (respuestaGuardada === "si") {
+            if (yaConfirmo === "si") {
 
                 confirmSection.innerHTML = `
                     <div class="invitacion-personal">
@@ -195,21 +195,26 @@ if (nombreInvitado) {
 
 }
 
+// =====================================
+// CONFIRMACIÓN PERSONALIZADA
+// =====================================
+
 function confirmarPersonalizado(respuesta) {
 
     const nombre   = nombreInvitado || "Invitado";
     const personas = personasInvitado || "1";
     const para     = paraQuien || "novia";
 
-    console.log("paraQuien:", para);
-
     const scriptURL =
-    "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
+        "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
 
     fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${encodeURIComponent(para)}`)
-    .catch(err => console.log("Error al registrar:", err));
+        .catch(err => console.log("Error al registrar:", err));
 
-    localStorage.setItem("confirmo_" + nombre, respuesta);
+    localStorage.setItem(
+        "confirmo_" + encodeURIComponent(nombre),
+        respuesta
+    );
 
     const confirmSection =
         document.querySelector(".confirm-section");
