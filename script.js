@@ -124,9 +124,11 @@ if (nombreInvitado) {
     if (confirmSection) {
 
         const yaConfirmo =
-            localStorage.getItem(
-                "confirmo_" + encodeURIComponent(nombreInvitado)
-            );
+        localStorage.getItem(
+            "confirmo_" + encodeURIComponent(nombreInvitado)
+        );
+
+        console.log("yaConfirmo:", yaConfirmo);
 
         if (yaConfirmo) {
 
@@ -203,7 +205,7 @@ function confirmarPersonalizado(respuesta) {
 
     const nombre   = nombreInvitado || "Invitado";
     const personas = personasInvitado || "1";
-    const para     = paraQuien || "novia";
+    const para = (paraQuien || "novia").toLowerCase();
 
     const scriptURL =
         "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
@@ -212,8 +214,13 @@ function confirmarPersonalizado(respuesta) {
         .catch(err => console.log("Error al registrar:", err));
 
     localStorage.setItem(
+    "confirmo_" + encodeURIComponent(nombre),
+    respuesta
+    );
+
+    console.log("Guardado en localStorage:",
         "confirmo_" + encodeURIComponent(nombre),
-        respuesta
+        "=", respuesta
     );
 
     const confirmSection =
