@@ -207,7 +207,9 @@ function confirmarPersonalizado(respuesta) {
     "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
 
     fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${encodeURIComponent(para)}`)
-        .catch(err => console.log("Error al registrar:", err));
+    .catch(err => console.log("Error al registrar:", err));
+
+    localStorage.setItem("confirmo_" + nombre, respuesta);
 
     const confirmSection =
         document.querySelector(".confirm-section");
