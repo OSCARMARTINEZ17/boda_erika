@@ -157,7 +157,7 @@ function confirmarPersonalizado(respuesta) {
     const destino  = paraQuien === "novio" ? "Daniel" : "Erika";
 
     const scriptURL =
-        "https://script.google.com/macros/s/AKfycbxIBkZ_CwEfbwB5PlWH59boMtoTQ0uLPqxO6kUmv_tqTvZLEonpFNUsI5zgujXKgt6wkQ/exec";
+    "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
 
     fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${destino}`)
         .catch(err => console.log("Error al registrar:", err));
