@@ -123,28 +123,73 @@ if (nombreInvitado) {
 
     if (confirmSection) {
 
-        confirmSection.innerHTML = `
-            <h2 class="section-title">Confirmación de Asistencia</h2>
-            <div class="invitacion-personal">
-                <p class="inv-saludo">Hola, <strong>${nombreInvitado}</strong> 👋</p>
-                <p class="inv-texto">
-                    Esta invitación es para
-                    <strong>
-                        ${personasInvitado}
-                        ${personasInvitado == 1 ? 'persona' : 'personas'}
-                    </strong>.
-                </p>
-                <p class="inv-pregunta">¿Confirmas tu asistencia?</p>
-                <div class="inv-btns">
-                    <button class="inv-btn-si" onclick="confirmarPersonalizado('si')">
-                        ✅ Sí asistiré
-                    </button>
-                    <button class="inv-btn-no" onclick="confirmarPersonalizado('no')">
-                        😔 No asistiré
-                    </button>
+        const yaConfirmo =
+            localStorage.getItem("confirmo_" + nombreInvitado);
+
+        if (yaConfirmo) {
+
+            const respuestaGuardada = yaConfirmo;
+
+            if (respuestaGuardada === "si") {
+
+                confirmSection.innerHTML = `
+                    <div class="invitacion-personal">
+                        <span style="font-size:3.5rem;display:block;margin-bottom:1rem;">✅</span>
+                        <h2 class="section-title">Ya confirmaste</h2>
+                        <p class="inv-saludo">
+                            Hola de nuevo, <strong>${nombreInvitado}</strong> 👋
+                        </p>
+                        <p class="inv-texto">
+                            Ya registramos tu asistencia.<br>
+                            ¡Te esperamos el <strong>11 de Octubre</strong>! ❤️
+                        </p>
+                    </div>
+                `;
+
+            } else {
+
+                confirmSection.innerHTML = `
+                    <div class="invitacion-personal">
+                        <span style="font-size:3.5rem;display:block;margin-bottom:1rem;">📋</span>
+                        <h2 class="section-title">Ya respondiste</h2>
+                        <p class="inv-saludo">
+                            Hola de nuevo, <strong>${nombreInvitado}</strong> 👋
+                        </p>
+                        <p class="inv-texto">
+                            Ya registramos que no podrás asistir.<br>
+                            ¡Gracias por avisarnos! ❤️
+                        </p>
+                    </div>
+                `;
+
+            }
+
+        } else {
+
+            confirmSection.innerHTML = `
+                <h2 class="section-title">Confirmación de Asistencia</h2>
+                <div class="invitacion-personal">
+                    <p class="inv-saludo">Hola, <strong>${nombreInvitado}</strong> 👋</p>
+                    <p class="inv-texto">
+                        Esta invitación es para
+                        <strong>
+                            ${personasInvitado}
+                            ${personasInvitado == 1 ? 'persona' : 'personas'}
+                        </strong>.
+                    </p>
+                    <p class="inv-pregunta">¿Confirmas tu asistencia?</p>
+                    <div class="inv-btns">
+                        <button class="inv-btn-si" onclick="confirmarPersonalizado('si')">
+                            ✅ Sí asistiré
+                        </button>
+                        <button class="inv-btn-no" onclick="confirmarPersonalizado('no')">
+                            😔 No asistiré
+                        </button>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+
+        }
 
     }
 
