@@ -159,7 +159,7 @@ function confirmarPersonalizado(respuesta) {
     const scriptURL =
     "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
 
-    fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${destino}`)
+    fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${paraQuien}`)
         .catch(err => console.log("Error al registrar:", err));
 
     const confirmSection =
