@@ -621,6 +621,31 @@ footer{
     border:1px solid #ccc;
 }
 
+.dc-p-azulclaro{
+    background:#d6eaf8;
+    color:#1a5276;
+    border:1px solid #aed6f1;
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    padding:7px 16px;
+    border-radius:50px;
+    font-size:.82rem;
+    font-weight:500;
+}
+
+.dc-p-azuloscuro{
+    background:#1a3a5c;
+    color:#d6eaf8;
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    padding:7px 16px;
+    border-radius:50px;
+    font-size:.82rem;
+    font-weight:500;
+}
+
 .dc-dot{
     width:10px;
     height:10px;
