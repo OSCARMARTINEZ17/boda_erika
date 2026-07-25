@@ -618,4 +618,4 @@ function crearPetalo() {
 
 }
 
-setInterval(crearPetalo, 600);
+setInterval(crearPetalo, 200);
