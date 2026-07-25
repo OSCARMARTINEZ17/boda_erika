@@ -554,3 +554,68 @@ if (progressBar && audioPlayer) {
     });
 
 }
+
+// =====================================
+// PÉTALOS ANIMADOS
+// =====================================
+
+const coloresPetalos = [
+    "#f4a7b9",
+    "#f9c8d5",
+    "#d4af37",
+    "#e8c87a",
+    "#b5c98a",
+    "#8ab890"
+];
+
+function crearPetalo() {
+
+    const petalo =
+        document.createElement("div");
+
+    petalo.classList.add("petalo");
+
+    const size =
+        Math.random() * 12 + 8;
+
+    const color =
+        coloresPetalos[
+            Math.floor(Math.random() * coloresPetalos.length)
+        ];
+
+    const duracion =
+        Math.random() * 6 + 6;
+
+    const delay =
+        Math.random() * 4;
+
+    petalo.innerHTML = `
+        <svg width="${size}" height="${size}" viewBox="0 0 20 20">
+            <ellipse
+                cx="10" cy="10"
+                rx="5" ry="9"
+                fill="${color}"
+                opacity=".8"
+                transform="rotate(${Math.random() * 360} 10 10)"
+            />
+        </svg>
+    `;
+
+    petalo.style.left =
+        Math.random() * 100 + "vw";
+
+    petalo.style.animationDuration =
+        duracion + "s";
+
+    petalo.style.animationDelay =
+        delay + "s";
+
+    document.body.appendChild(petalo);
+
+    setTimeout(() => {
+        petalo.remove();
+    }, (duracion + delay) * 1000);
+
+}
+
+setInterval(crearPetalo, 600);

@@ -1425,3 +1425,93 @@ footer{
     text-align:center;
     padding:2rem 0;
 }
+
+/* =========================
+   FRASE ROMÁNTICA
+========================= */
+
+.frase-section{
+    text-align:center;
+    padding:60px 20px;
+}
+
+.frase-card{
+    max-width:600px;
+    margin:0 auto;
+    padding:2.5rem 2rem;
+    border-left:4px solid #d4af37;
+    background:white;
+    border-radius:0 20px 20px 0;
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+    text-align:left;
+    position:relative;
+}
+
+.frase-comilla{
+    font-family:'Great Vibes',cursive;
+    font-size:6rem;
+    color:#d4af37;
+    opacity:.2;
+    position:absolute;
+    top:-10px;
+    left:15px;
+    line-height:1;
+}
+
+.frase-texto{
+    font-size:1rem;
+    color:#555;
+    line-height:1.9;
+    font-style:italic;
+    margin-bottom:1.25rem;
+    padding-left:.5rem;
+}
+
+.frase-firma{
+    font-family:'Great Vibes',cursive;
+    font-size:1.6rem;
+    color:#d4af37;
+    display:block;
+    text-align:right;
+}
+
+@media(max-width:480px){
+
+    .frase-card{
+        padding:1.75rem 1.25rem;
+    }
+
+    .frase-texto{
+        font-size:.92rem;
+    }
+}
+
+/* =========================
+   PÉTALOS ANIMADOS
+========================= */
+
+.petalo{
+    position:fixed;
+    top:-20px;
+    pointer-events:none;
+    z-index:0;
+    opacity:0;
+    animation:caerPetalo linear infinite;
+}
+
+@keyframes caerPetalo{
+    0%{
+        transform:translateY(-20px) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:.8;
+    }
+    90%{
+        opacity:.6;
+    }
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
