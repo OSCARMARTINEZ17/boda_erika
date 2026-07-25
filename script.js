@@ -124,11 +124,9 @@ if (nombreInvitado) {
     if (confirmSection) {
 
         const yaConfirmo =
-        localStorage.getItem(
-            "confirmo_" + encodeURIComponent(nombreInvitado)
-        );
-
-        console.log("yaConfirmo:", yaConfirmo);
+            localStorage.getItem(
+                "confirmo_" + encodeURIComponent(nombreInvitado)
+            );
 
         if (yaConfirmo) {
 
@@ -205,22 +203,17 @@ function confirmarPersonalizado(respuesta) {
 
     const nombre   = nombreInvitado || "Invitado";
     const personas = personasInvitado || "1";
-    const para = (paraQuien || "novia").toLowerCase();
+    const para     = (paraQuien || "novia").toLowerCase();
 
     const scriptURL =
-        "https://script.google.com/macros/s/AKfycbwzjx7wMgJBApr9HyPy7WIU5ZyDSAczcPgVAwNUg2gw--WL46xCQFHhren4ND_AhY_GkQ/exec";
+        "https://script.google.com/macros/s/AKfycbx_7XGygJydQ2YRwMo-qI2F-tXPYixos4RwEEaknk1NEXegPItiSOp5GFkMN7u45bJl1A/exec";
 
-    fetch(`${scriptURL}?nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${encodeURIComponent(para)}`)
+    fetch(`${scriptURL}?accion=confirmar&nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${encodeURIComponent(para)}`)
         .catch(err => console.log("Error al registrar:", err));
 
     localStorage.setItem(
-    "confirmo_" + encodeURIComponent(nombre),
-    respuesta
-    );
-
-    console.log("Guardado en localStorage:",
         "confirmo_" + encodeURIComponent(nombre),
-        "=", respuesta
+        respuesta
     );
 
     const confirmSection =
@@ -264,6 +257,113 @@ function confirmarPersonalizado(respuesta) {
         }
 
     }
+
+}
+
+// =====================================
+// MURO DE MENSAJES
+// =====================================
+
+const scriptURLMuro =
+    "https://script.google.com/macros/s/AKfycbx_7XGygJydQ2YRwMo-qI2F-tXPYixos4RwEEaknk1NEXegPItiSOp5GFkMN7u45bJl1A/exec";
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    cargarMensajes();
+
+    const textarea = document.getElementById("muro-mensaje");
+    const contador = document.getElementById("muro-chars");
+
+    if (textarea && contador) {
+        textarea.addEventListener("input", () => {
+            contador.textContent = textarea.value.length;
+        });
+    }
+
+});
+
+function cargarMensajes() {
+
+    const contenedor =
+        document.getElementById("muro-mensajes");
+
+    if (!contenedor) return;
+
+    fetch(`${scriptURLMuro}?accion=obtenerMensajes`)
+        .then(res => res.json())
+        .then(data => {
+
+            if (!data.mensajes || data.mensajes.length === 0) {
+
+                contenedor.innerHTML =
+                    `<p class="muro-vacio">
+                        Sé el primero en dejar un mensaje 💌
+                    </p>`;
+
+                return;
+
+            }
+
+            contenedor.innerHTML = data.mensajes
+                .map(m => `
+                    <div class="muro-card">
+                        <p class="muro-card-nombre">💛 ${m.nombre}</p>
+                        <p class="muro-card-mensaje">${m.mensaje}</p>
+                        <p class="muro-card-fecha">${m.fecha}</p>
+                    </div>
+                `)
+                .join("");
+
+        })
+        .catch(() => {
+
+            contenedor.innerHTML =
+                `<p class="muro-vacio">
+                    No se pudieron cargar los mensajes.
+                </p>`;
+
+        });
+
+}
+
+function enviarMensaje() {
+
+    const nombre  =
+        document.getElementById("muro-nombre").value.trim();
+
+    const mensaje =
+        document.getElementById("muro-mensaje").value.trim();
+
+    if (!nombre) {
+        alert("Por favor escribe tu nombre.");
+        return;
+    }
+
+    if (!mensaje) {
+        alert("Por favor escribe un mensaje.");
+        return;
+    }
+
+    fetch(`${scriptURLMuro}?accion=mensaje&nombre=${encodeURIComponent(nombre)}&mensaje=${encodeURIComponent(mensaje)}`)
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.ok) {
+
+                document.getElementById("muro-nombre").value = "";
+                document.getElementById("muro-mensaje").value = "";
+                document.getElementById("muro-chars").textContent = "0";
+
+                cargarMensajes();
+
+                alert("¡Mensaje enviado! 💌");
+
+            }
+
+        })
+        .catch(() => {
+            alert("Error al enviar el mensaje. Intenta de nuevo.");
+        });
 
 }
 

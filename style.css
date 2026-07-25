@@ -1333,3 +1333,95 @@ footer{
     }
 }
 
+/* =========================
+   MURO DE MENSAJES
+========================= */
+
+.muro-section{
+    text-align:center;
+}
+
+.muro-form{
+    max-width:480px;
+    margin:2rem auto;
+    display:flex;
+    flex-direction:column;
+    gap:.75rem;
+}
+
+.muro-form input,
+.muro-form textarea{
+    width:100%;
+    padding:14px 18px;
+    border:1.5px solid #eee;
+    border-radius:15px;
+    font-size:.95rem;
+    font-family:'Poppins',sans-serif;
+    outline:none;
+    resize:none;
+    transition:.2s;
+    background:white;
+    color:#444;
+}
+
+.muro-form input:focus,
+.muro-form textarea:focus{
+    border-color:#d4af37;
+}
+
+.muro-contador{
+    font-size:.75rem;
+    color:#aaa;
+    text-align:right;
+    margin-top:-.4rem;
+}
+
+.muro-mensajes{
+    max-width:600px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+
+.muro-card{
+    background:white;
+    border:.5px solid #eee;
+    border-radius:20px;
+    padding:1.25rem 1.5rem;
+    text-align:left;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.muro-card-nombre{
+    font-size:.85rem;
+    font-weight:600;
+    color:#d4af37;
+    margin-bottom:.3rem;
+}
+
+.muro-card-mensaje{
+    font-size:.9rem;
+    color:#555;
+    line-height:1.6;
+    margin-bottom:.3rem;
+}
+
+.muro-card-fecha{
+    font-size:.72rem;
+    color:#ccc;
+}
+
+.muro-cargando{
+    color:#aaa;
+    font-size:.9rem;
+    font-style:italic;
+}
+
+.muro-vacio{
+    color:#ccc;
+    font-size:.9rem;
+    font-style:italic;
+    text-align:center;
+    padding:2rem 0;
+}

@@ -337,6 +337,48 @@
 
     </section>
 
+    <!-- MURO DE MENSAJES -->
+    <section class="reveal muro-section">
+
+        <h2 class="section-title">Muro de Mensajes</h2>
+
+        <p class="story">
+            Déjanos un mensaje de felicitación que
+            guardaremos para siempre. 💌
+        </p>
+
+        <div class="muro-form">
+
+            <input
+                type="text"
+                id="muro-nombre"
+                placeholder="Tu nombre"
+                maxlength="50"
+            >
+
+            <textarea
+                id="muro-mensaje"
+                placeholder="Escribe tu mensaje aquí..."
+                maxlength="300"
+                rows="3"
+            ></textarea>
+
+            <button onclick="enviarMensaje()">
+                💌 Enviar mensaje
+            </button>
+
+            <p class="muro-contador">
+                <span id="muro-chars">0</span>/300
+            </p>
+
+        </div>
+
+        <div class="muro-mensajes" id="muro-mensajes">
+            <p class="muro-cargando">Cargando mensajes...</p>
+        </div>
+
+    </section>
+
     <!-- CONFIRMACIÓN — OPCIÓN B -->
     <section class="reveal confirm-section">
 
