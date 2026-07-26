@@ -213,8 +213,6 @@ const scriptURLMuro =
   "https://script.google.com/macros/s/AKfycbwdiuZQEOGh6LBIBURbpdyr9GGBPGPrFotP01SI_Hb8yf8PkUQOUguHwatxYq4lmaU3Kg/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
-  cargarMensajes();
-
   const textarea = document.getElementById("muro-mensaje");
   const contador = document.getElementById("muro-chars");
 
@@ -224,41 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-function cargarMensajes() {
-  const contenedor = document.getElementById("muro-mensajes");
-
-  if (!contenedor) return;
-
-  fetch(`${scriptURLMuro}?accion=obtenerMensajes`)
-    .then((res) => res.json())
-    .then((data) => {
-      if (!data.mensajes || data.mensajes.length === 0) {
-        contenedor.innerHTML = `<p class="muro-vacio">
-                        Sé el primero en dejar un mensaje 💌
-                    </p>`;
-
-        return;
-      }
-
-      contenedor.innerHTML = data.mensajes
-        .map(
-          (m) => `
-                    <div class="muro-card">
-                        <p class="muro-card-nombre">💛 ${m.nombre}</p>
-                        <p class="muro-card-mensaje">${m.mensaje}</p>
-                        <p class="muro-card-fecha">${m.fecha}</p>
-                    </div>
-                `,
-        )
-        .join("");
-    })
-    .catch(() => {
-      contenedor.innerHTML = `<p class="muro-vacio">
-                    No se pudieron cargar los mensajes.
-                </p>`;
-    });
-}
 
 function enviarMensaje() {
   const nombre = document.getElementById("muro-nombre").value.trim();
