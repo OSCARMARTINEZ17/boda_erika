@@ -161,7 +161,7 @@ function confirmarPersonalizado(respuesta) {
   const para = (paraQuien || "novia").toLowerCase();
 
   const scriptURL =
-    "https://script.google.com/macros/s/AKfycbxr0bmRZfpfXqazJMlBcPUrvca3LjL9dv54boktTfXLrkpq6FfDFafpcU1vHdLOZnL9Jg/exec";
+    "https://script.google.com/macros/s/AKfycbwdiuZQEOGh6LBIBURbpdyr9GGBPGPrFotP01SI_Hb8yf8PkUQOUguHwatxYq4lmaU3Kg/exec";
 
   fetch(
     `${scriptURL}?accion=confirmar&nombre=${encodeURIComponent(nombre)}&personas=${personas}&respuesta=${respuesta}&para=${encodeURIComponent(para)}`,
@@ -210,7 +210,7 @@ function confirmarPersonalizado(respuesta) {
 // =====================================
 
 const scriptURLMuro =
-  "https://script.google.com/macros/s/AKfycbxr0bmRZfpfXqazJMlBcPUrvca3LjL9dv54boktTfXLrkpq6FfDFafpcU1vHdLOZnL9Jg/exec";
+  "https://script.google.com/macros/s/AKfycbwdiuZQEOGh6LBIBURbpdyr9GGBPGPrFotP01SI_Hb8yf8PkUQOUguHwatxYq4lmaU3Kg/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarMensajes();
