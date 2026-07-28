@@ -248,7 +248,38 @@ function enviarMensaje() {
         document.getElementById("muro-mensaje").value = "";
         document.getElementById("muro-chars").textContent = "0";
 
-        cargarMensajes();
+        function enviarMensaje() {
+          const nombre = document.getElementById("muro-nombre").value.trim();
+
+          const mensaje = document.getElementById("muro-mensaje").value.trim();
+
+          if (!nombre) {
+            alert("Por favor escribe tu nombre.");
+            return;
+          }
+
+          if (!mensaje) {
+            alert("Por favor escribe un mensaje.");
+            return;
+          }
+
+          fetch(
+            `${scriptURLMuro}?accion=mensaje&nombre=${encodeURIComponent(nombre)}&mensaje=${encodeURIComponent(mensaje)}`,
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.ok) {
+                document.getElementById("muro-nombre").value = "";
+                document.getElementById("muro-mensaje").value = "";
+                document.getElementById("muro-chars").textContent = "0";
+
+                alert("¡Mensaje enviado! 💌");
+              }
+            })
+            .catch(() => {
+              alert("Error al enviar el mensaje. Intenta de nuevo.");
+            });
+        }
 
         alert("¡Mensaje enviado! 💌");
       }
