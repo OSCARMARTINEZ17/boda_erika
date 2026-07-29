@@ -487,3 +487,6 @@ function crearPetalo() {
 }
 
 setInterval(crearPetalo, 200);
+
+// Auto-actualizar cada 30 segundos
+setInterval(cargarTodo, 30000);
