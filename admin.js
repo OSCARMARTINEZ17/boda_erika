@@ -1,5 +1,5 @@
 const scriptURL =
-  "https://script.google.com/macros/s/AKfycby9OQbhjChnNrgZMC7JPk5w7qtAI3CwQjhckp-r1i1TVkaYr4it2J9_fymuVfChgUJrgg/exec";
+  "https://script.google.com/macros/s/AKfycbxqi4sc_W3tj7JvqZPjoJrJTR_zwlWdxZpGNAr1TNUc_BwxEMD2vP6hGfpj-Y1K2zD9Ew/exec";
 
 function mostrarPanel(nombre, event) {
   document
