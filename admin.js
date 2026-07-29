@@ -18,6 +18,13 @@ function mostrarPanel(nombre, event) {
 function cargarTodo() {
   cargarConfirmaciones();
   cargarMensajes();
+
+  const ahora = new Date().toLocaleTimeString("es-CO");
+  const el = document.getElementById("ultima-actualizacion");
+
+  if (el) {
+    el.textContent = "Última actualización: " + ahora;
+  }
 }
 
 function cargarConfirmaciones() {
@@ -114,3 +121,6 @@ function cargarMensajes() {
 }
 
 cargarTodo();
+
+// Auto-actualizar cada 10 segundos
+setInterval(cargarTodo, 10000);
